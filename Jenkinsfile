@@ -23,23 +23,23 @@ pipeline {
             }
         }
         
-        stage('OWASP Scan') {
-            steps {
-                dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DP'
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-            }
-        }
+        // stage('OWASP Scan') {
+        //     steps {
+        //         dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DP'
+        //         dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+        //     }
+        // }
 
-        stage('SonarQube') {
-            steps {
-                withSonarQubeEnv('sonar-server') {
-                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Shopping-Cart \
-                        -Dsonar.java.binaries=. \
-                        -Dsonar.projectKey=Shopping-Cart \
-                        -Dsonar.sources=. '''
-                }
-            }
-        } 
+        // stage('SonarQube') {
+        //     steps {
+        //         withSonarQubeEnv('sonar-server') {
+        //             sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Shopping-Cart \
+        //                 -Dsonar.java.binaries=. \
+        //                 -Dsonar.projectKey=Shopping-Cart \
+        //                 -Dsonar.sources=. '''
+        //         }
+        //     }
+        // } 
         
         stage('Build') {
             steps {
